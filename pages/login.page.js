@@ -4,7 +4,7 @@ class LoginPage {
   constructor() {
     this.inputUsuario = Selector("#user-name");
     this.inputSenha = Selector("#password");
-    this.botaoLoginbotaoLogin = Selector("#login-button");
+    this.botaoLogin = Selector("#login-button");
   }
 
   async loginSucesso(usuario, senha) {
