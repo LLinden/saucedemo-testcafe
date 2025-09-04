@@ -1,4 +1,4 @@
-import loginPage from "../pages/login.page";
+import loginPage from "../../pages/login.page";
 import dotenv from "dotenv";
 
 // carrega variáveis do .env
@@ -16,7 +16,7 @@ test("Login com sucesso", async (t) => {
     .eql(process.env.URL_POS_LOGIN);
 });
 
-test("Login com usuário inválido", async (t) => {
+test.only("Login com usuário inválido", async (t) => {
   const mensagemErroEsperada =
     "Epic sadface: Username and password do not match any user in this service";
   await loginPage.login(
@@ -24,5 +24,7 @@ test("Login com usuário inválido", async (t) => {
     process.env.SENHA_USER_VALIDO
   );
   const mensagemErroObtida = await loginPage.mensagemErro();
+  console.log(mensagemErroObtida + "OBTIDA");
+  console.log(mensagemErroEsperada + "ESPERADA");
   await t.expect(mensagemErroObtida).eql(mensagemErroEsperada);
 });

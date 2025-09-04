@@ -5,7 +5,7 @@ class LoginPage {
     this.inputUsuario = Selector("#user-name");
     this.inputSenha = Selector("#password");
     this.botaoLogin = Selector("#login-button");
-    this.mensagemErro = Selector('[data-test="error"]');
+    this.mensagemErro = Selector('h3[data-test="error"]');
   }
 
   async login(usuario, senha) {
@@ -17,7 +17,7 @@ class LoginPage {
   }
 
   async mensagemErroLogin() {
-    return this.mensagemErro.innerText;
+    return await this.mensagemErro.textContent;
   }
 }
 
