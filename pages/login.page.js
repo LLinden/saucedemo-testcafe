@@ -17,7 +17,7 @@ class LoginPage {
   }
 
   async mensagemErroLogin() {
-    return await this.mensagemErro.textContent;
+    return await this.mensagemErro.innerText;
   }
 }
 

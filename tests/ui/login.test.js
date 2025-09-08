@@ -16,15 +16,21 @@ test("Login com sucesso", async (t) => {
     .eql(process.env.URL_POS_LOGIN);
 });
 
-test.only("Login com usuário inválido", async (t) => {
+test("Login com usuário inválido", async (t) => {
   const mensagemErroEsperada =
     "Epic sadface: Username and password do not match any user in this service";
   await loginPage.login(
     process.env.USUARIO_INVALIDO,
     process.env.SENHA_USER_VALIDO
   );
-  const mensagemErroObtida = await loginPage.mensagemErro();
-  console.log(mensagemErroObtida + "OBTIDA");
-  console.log(mensagemErroEsperada + "ESPERADA");
+  const mensagemErroObtida = await loginPage.mensagemErroLogin();
+  await t.expect(mensagemErroObtida).eql(mensagemErroEsperada);
+});
+
+test("Login com senha inválida", async (t) => {
+  const mensagemErroEsperada =
+    "Epic sadface: Username and password do not match any user in this service";
+  await loginPage.login(process.env.USUARIO_VALIDO, "aaa");
+  const mensagemErroObtida = await loginPage.mensagemErroLogin();
   await t.expect(mensagemErroObtida).eql(mensagemErroEsperada);
 });
